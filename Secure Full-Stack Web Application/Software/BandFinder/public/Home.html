@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="css/Home.css">
+    <link rel="stylesheet" href="css/footer.css">
+     <script src="js/navbar.js" defer></script>
+     <script src="js/Home.js" defer></script>
+     <script src="js/layout.js" defer></script>
+     
+                   
+
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+   
+    
+    
+    <section class="hero">
+    <h1>Book The Biggest Bands</h1>
+    <h2>For Your Private And Public Events</h2>
+    <button class="hero-btn" onclick="window.location.href='view_bands.html'">
+        Book Now
+    </button>
+
+    </section>
+    
+<div class="ai-agent-container">
+    <h3>Ask AI agent!</h3>
+
+  <div class="ai-agent-buttons">
+    <button id="btnAboutMusic">About Music</button>
+    <button id="btnAboutBands">About Our Bands</button>
+  </div>
+
+  <div id="aiInputContainer" style="display:none; position: relative; width: 100%; max-width: 400px; margin: 0 auto; height: 80px;">
+    <input
+        type="text"
+        id="aiPromptInput"
+        class="ai-agent-input"
+        autocomplete="off"
+        placeholder="Ask our AI agent…"
+    />
+    <button type="button" id="sendPromptBtn" class="ai-agent-btn">Send</button>
+</div>
+    <div id="aiResponse" style=" display:none; margin-top:10px;  padding:5px; border:0px solid #ccc; border-radius:5px;"></div>
+
+</div>
+
+    
+    <section class="hero-image">
+            <img src="concert.jpg.avif" alt="Live band performing on stage">
+    </section>
+</body>
+
+

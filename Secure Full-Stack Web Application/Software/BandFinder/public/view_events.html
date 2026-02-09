@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bands</title>
+    <script src="https://openlayers.org/api/OpenLayers.js"></script>
+
+    <link rel="stylesheet" href="css/view_events.css">
+    <script src="js/navbar.js"></script>
+                   <script src="js/view_events.js" defer></script>
+                   
+
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+   
+
+<div class="filter-wrapper">
+  <div id="filter-box">
+
+      <form id="filterForm" onsubmit="searchEvents(event)">
+       
+        
+        <select id="genreSelect" name="genre">
+          <option value="">Genre</option>
+        </select>
+
+        <input type="date" id="dateFilter" name="date">
+
+        <select id="citySelect" name="city">
+          <option value="">City</option>
+        </select>
+
+      <option value="nearby">Sort by my location</option>
+
+      <button type="button" id="locationSort" style="display: none;">Sort by my location</button>
+
+        <button type="submit" id="searchBtn">Go</button>
+      </form>
+  </div>
+</div>
+
+<div class="events-layout">
+
+    
+    <div class="events-list" id="eventsList">
+        <h2>Upcoming Public Events</h2>
+        <div class="event-card">
+  <h3>Rock Night Live</h3>
+  <p><strong>City:</strong> Athens</p>
+  <p><strong>Date:</strong> 20/07/2025</p>
+  <p><strong>Price:</strong> €15</p>
+</div>
+    </div>
+
+    
+    <div class="events-map">
+        <div id="map"></div>
+    </div>
+    
+
+</div>
+
+</body>

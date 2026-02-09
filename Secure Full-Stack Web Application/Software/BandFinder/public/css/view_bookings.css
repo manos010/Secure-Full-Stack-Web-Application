@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+}
+
+
+#bookings-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+.bookings-section {
+  margin-bottom: 50px;
+}
+
+.bookings-section h2 {
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.booking-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.booking-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.booking-card span {
+  font-size: 14px;
+}
+
+.booking-status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  color: #f39c12;
+}
+
+.status-done {
+  color: #27ae60;
+}
+
+.status-rejected {
+  color: #c0392b;
+}
+
+/* empty */
+.empty-msg {
+  color: #777;
+  font-style: italic;
+}
+
+.chat-btn {
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#chat-messages {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}

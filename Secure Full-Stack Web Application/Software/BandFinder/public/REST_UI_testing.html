@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+                    <script src="js/REST.js" defer></script>
+
+
+
+  <link rel="stylesheet" href="css/cssExamples.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>REST API Review Testing</title>
+</head>
+
+<body>
+<div id="demo">
+<h2>Test REST API - Reviews</h2>
+
+<div class="row">
+
+    <div class="column column1Width" id="choices" style="background-color:#ADD8E6;"> 
+
+        <!-- POST Review -->
+        <h3>POST /api/review</h3>
+        <form id="review-post-form" onsubmit="postReview(); return false;">
+            <label for='band_name'>Band Name:</label>
+            <input id='band_name' type='text' name='band_name' ><br>
+            <label for='sender'>Sender Name:</label>
+            <input id='sender' type='text' name='sender' ><br>
+            <label for='review'>Review:</label>
+            <textarea id='review' name='review' ></textarea><br>
+            <label for='rating'>Rating (1-5):</label>
+            <input id='rating' type='number' name='rating' min="1" max="5" ><br>
+            <input type='submit' class="button" value="Submit Review">
+        </form>
+
+        <!-- GET Reviews -->
+        <h3>GET /api/reviews/:band_name</h3>
+        <label for='band_name_get'>Band Name or "all":</label>
+        <input id='band_name_get' type='text'><br>
+        <label for='ratingFrom'>Rating From (optional):</label>
+        <input id='ratingFrom' type='number' min="1" max="5"><br>
+        <label for='ratingTo'>Rating To (optional):</label>
+        <input id='ratingTo' type='number' min="1" max="5"><br>
+        <button type="button" onclick="getReviews()" class="button">Load Reviews</button>
+
+        <!-- PUT Review Status -->
+        <h3>PUT /api/reviewStatus/:review_id/:status</h3>
+        <label for='review_id_put'>Review ID:</label>
+        <input id='review_id_put' type='number'><br>
+        <label for='status_put'>Status:</label>
+        <select id='status_put'>
+            <option value="published">published</option>
+            <option value="rejected">rejected</option>
+        </select><br>
+        <button type="button" onclick="updateReviewStatus()" class="button">Update Status</button>
+
+        <!-- DELETE Review -->
+        <h3>DELETE /api/reviewDeletion/:review_id</h3>
+        <label for='review_id_del'>Review ID:</label>
+        <input id='review_id_del' type='number'><br>
+        <button type="button" onclick="deleteReview()" class="button">Delete Review</button>
+
+    </div>
+
+    <div class="column column2Width" id="output" style="background-color:#fffff0;">
+        <h2>Output</h2>
+        <div id="rest-api-output"></div>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bands</title>
+    <link rel="stylesheet" href="css/view_bookings.css">
+    <script src="js/navbar.js"></script>
+    <script src="js/view_bookings.js" defer></script>
+    <script src="/socket.io/socket.io.js"></script>
+ 
+<script src="js/socket.js" defer></script>
+                   
+
+
+</head>
+
+
+<body>
+  <div id="navbar-container"></div>
+
+    <div id="bookings-page">
+
+        <h1 class="page-title">My Bookings</h1>
+
+        <div class="bookings-section">
+        <h2>Upcoming Bookings</h2>
+        <div id="upcomingBookings" class="bookings-list"></div>
+        </div>
+
+        <div class="bookings-section">
+        <h2>Past Bookings</h2>
+        <div id="pastBookings" class="bookings-list"></div>
+        </div>
+
+    </div>
+
+    <div id="chat-page" style="display:none">
+        <button class="back-btn" onclick="backToBookings()">←back</button>
+        <h2 id="chat-title"></h2>
+        <div id="chat-messages"></div>
+
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Type message..." />
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+  
+
+
+</body>

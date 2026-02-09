@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up page</title>
+    <link rel="stylesheet" href="css/style.css">
+                   <script src="js/ajax.js" defer></script>
+                   <script src="js/band.js" defer></script>
+                      <script src="/socket.io/socket.io.js"></script>
+ 
+<script src="js/socket.js" defer></script>
+
+<script src="js/test.js" defer></script>
+
+</head>
+<body class="user-mode">
+    <script src="https://openlayers.org/api/OpenLayers.js"></script>
+
+<button  id="select_user_or_band" class="toggle-btn" onclick="switchtext()"> <img src="white-user.png" class="user-icon" alt="Icon" style="width:38px; height:38px;">
+  <span class="btn-text">USER</span>
+
+  
+  
+</button>
+
+
+<!-- USER FORM -->
+    <form id="user-form" class="mainForm"  onsubmit='RegisterPost("user");return false;'>
+        <div id="user_reg_log_btns">
+            <button type="button"id="Register" class="reg-log" onclick="show_register_form()" >Sign up</button>
+            <button type="button" id="Login" class="reg-log" onclick="show_login_form()" >Sign in</button>
+        </div>
+        
+        <input type="text" placeholder="Username" name="username" pattern="[A-Za-z][A-Za-z0-9]{6,}" onfocusout="checkDuplicate('username', this.value, 'USER')" required>
+        <span id="USERusernameError" class="error-message"></span>
+        
+        <input type="text" placeholder="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onfocusout="checkDuplicate('email', this.value, 'USER')" required>
+    <span id="USERemailError" class="error-message"></span>
+    
+    <div class="passwd-wrapper">
+            <input type="password" placeholder="Password" name="password" minlength="8" maxlength="14"
+            pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+            <!--<input type="checkbox" onclick="showPass('user')">👁️ -->
+            <button type="button" class="show-passwd" onclick="show_pass('user')">
+                <img src="eye_closed.svg" alt="show password"/>
+            </button>
+        </div>
+            <input type="password" placeholder="Confirm password" name="confirm_password" minlength="8" maxlength="14"
+            pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+
+    
+
+        <input type="text" placeholder="Όνομα" name="firstname" minlength="3" maxlength="30" pattern="(^[^0-9]+$)" required>
+        <input type="text" placeholder="Επώνυμο" name="lastname" minlength="3" maxlength="30" pattern="(^[^0-9]+$)" required>
+        <input type="date" name="birthdate" min="1920-01-01" max="2011-12-31" value="1980-01-01" required>
+
+        <div class="gender-options">
+            <label><input type="radio" name="gender" value="Άντρας" required> Άντρας</label>
+            <label><input type="radio" name="gender" value="Γυναίκα" required> Γυναίκα</label>
+            <label><input type="radio" name="gender" value="Άλλο" required> Άλλο</label>
+        </div>
+
+        <select class="form-select" id="country" name="country" required>
+            <option value="" disabled>Επιλέξτε χώρα</option>
+            <option value="AF">Afghanistan</option>
+        <option value="AX">Åland Islands</option>
+        <option value="AL">Albania</option>
+        <option value="DZ">Algeria</option>
+        <option value="AS">American Samoa</option>
+        <option value="AD">Andorra</option>
+        <option value="AO">Angola</option>
+        <option value="AI">Anguilla</option>
+        <option value="AQ">Antarctica</option>
+        <option value="AG">Antigua and Barbuda</option>
+        <option value="AR">Argentina</option>
+        <option value="AM">Armenia</option>
+        <option value="AW">Aruba</option>
+        <option value="AU">Australia</option>
+        <option value="AT">Austria</option>
+        <option value="AZ">Azerbaijan</option>
+        <option value="BS">Bahamas</option>
+        <option value="BH">Bahrain</option>
+        <option value="BD">Bangladesh</option>
+        <option value="BB">Barbados</option>
+        <option value="BY">Belarus</option>
+        <option value="BE">Belgium</option>
+        <option value="BZ">Belize</option>
+        <option value="BJ">Benin</option>
+        <option value="BM">Bermuda</option>
+        <option value="BT">Bhutan</option>
+        <option value="BO">Bolivia (Plurinational State of)</option>
+        <option value="BA">Bosnia and Herzegovina</option>
+        <option value="BW">Botswana</option>
+        <option value="BV">Bouvet Island</option>
+        <option value="BR">Brazil</option>
+        <option value="IO">British Indian Ocean Territory</option>
+        <option value="BN">Brunei Darussalam</option>
+        <option value="BG">Bulgaria</option>
+        <option value="BF">Burkina Faso</option>
+        <option value="BI">Burundi</option>
+        <option value="CV">Cabo Verde</option>
+        <option value="KH">Cambodia</option>
+        <option value="CM">Cameroon</option>
+        <option value="CA">Canada</option>
+        <option value="BQ">Caribbean Netherlands</option>
+        <option value="KY">Cayman Islands</option>
+        <option value="CF">Central African Republic</option>
+        <option value="TD">Chad</option>
+        <option value="CL">Chile</option>
+        <option value="CN">China</option>
+        <option value="CX">Christmas Island</option>
+        <option value="CC">Cocos (Keeling) Islands</option>
+        <option value="CO">Colombia</option>
+        <option value="KM">Comoros</option>
+        <option value="CG">Congo</option>
+        <option value="CD">Congo, Democratic Republic of the</option>
+        <option value="CK">Cook Islands</option>
+        <option value="CR">Costa Rica</option>
+        <option value="HR">Croatia</option>
+        <option value="CU">Cuba</option>
+        <option value="CW">Curaçao</option>
+        <option value="CY">Cyprus</option>
+        <option value="CZ">Czech Republic</option>
+        <option value="CI">Côte d'Ivoire</option>
+        <option value="DK">Denmark</option>
+        <option value="DJ">Djibouti</option>
+        <option value="DM">Dominica</option>
+        <option value="DO">Dominican Republic</option>
+        <option value="EC">Ecuador</option>
+        <option value="EG">Egypt</option>
+        <option value="SV">El Salvador</option>
+        <option value="GQ">Equatorial Guinea</option>
+        <option value="ER">Eritrea</option>
+        <option value="EE">Estonia</option>
+        <option value="SZ">Eswatini (Swaziland)</option>
+        <option value="ET">Ethiopia</option>
+        <option value="FK">Falkland Islands (Malvinas)</option>
+        <option value="FO">Faroe Islands</option>
+        <option value="FJ">Fiji</option>
+        <option value="FI">Finland</option>
+        <option value="FR">France</option>
+        <option value="GF">French Guiana</option>
+        <option value="PF">French Polynesia</option>
+        <option value="TF">French Southern Territories</option>
+        <option value="GA">Gabon</option>
+        <option value="GM">Gambia</option>
+        <option value="GE">Georgia</option>
+        <option value="DE">Germany</option>
+        <option value="GH">Ghana</option>
+        <option value="GI">Gibraltar</option>
+        <option value="GR" selected>Greece</option>
+        <option value="GL">Greenland</option>
+        <option value="GD">Grenada</option>
+        <option value="GP">Guadeloupe</option>
+        <option value="GU">Guam</option>
+        <option value="GT">Guatemala</option>
+        <option value="GG">Guernsey</option>
+        <option value="GN">Guinea</option>
+        <option value="GW">Guinea-Bissau</option>
+        <option value="GY">Guyana</option>
+        <option value="HT">Haiti</option>
+        <option value="HM">Heard Island and Mcdonald Islands</option>
+        <option value="HN">Honduras</option>
+        <option value="HK">Hong Kong</option>
+        <option value="HU">Hungary</option>
+        <option value="IS">Iceland</option>
+        <option value="IN">India</option>
+        <option value="ID">Indonesia</option>
+        <option value="IR">Iran</option>
+        <option value="IQ">Iraq</option>
+        <option value="IE">Ireland</option>
+        <option value="IM">Isle of Man</option>
+        <option value="IL">Israel</option>
+        <option value="IT">Italy</option>
+        <option value="JM">Jamaica</option>
+        <option value="JP">Japan</option>
+        <option value="JE">Jersey</option>
+        <option value="JO">Jordan</option>
+        <option value="KZ">Kazakhstan</option>
+        <option value="KE">Kenya</option>
+        <option value="KI">Kiribati</option>
+        <option value="KP">Korea, North</option>
+        <option value="KR">Korea, South</option>
+        <option value="XK">Kosovo</option>
+        <option value="KW">Kuwait</option>
+        <option value="KG">Kyrgyzstan</option>
+        <option value="LA">Lao People's Democratic Republic</option>
+        <option value="LV">Latvia</option>
+        <option value="LB">Lebanon</option>
+        <option value="LS">Lesotho</option>
+        <option value="LR">Liberia</option>
+        <option value="LY">Libya</option>
+        <option value="LI">Liechtenstein</option>
+        <option value="LT">Lithuania</option>
+        <option value="LU">Luxembourg</option>
+        <option value="MO">Macao</option>
+        <option value="MK">Macedonia North</option>
+        <option value="MG">Madagascar</option>
+        <option value="MW">Malawi</option>
+        <option value="MY">Malaysia</option>
+        <option value="MV">Maldives</option>
+        <option value="ML">Mali</option>
+        <option value="MT">Malta</option>
+        <option value="MH">Marshall Islands</option>
+        <option value="MQ">Martinique</option>
+        <option value="MR">Mauritania</option>
+        <option value="MU">Mauritius</option>
+        <option value="YT">Mayotte</option>
+        <option value="MX">Mexico</option>
+        <option value="FM">Micronesia</option>
+        <option value="MD">Moldova</option>
+        <option value="MC">Monaco</option>
+        <option value="MN">Mongolia</option>
+        <option value="ME">Montenegro</option>
+        <option value="MS">Montserrat</option>
+        <option value="MA">Morocco</option>
+        <option value="MZ">Mozambique</option>
+        <option value="MM">Myanmar (Burma)</option>
+        <option value="NA">Namibia</option>
+        <option value="NR">Nauru</option>
+        <option value="NP">Nepal</option>
+        <option value="NL">Netherlands</option>
+        <option value="AN">Netherlands Antilles</option>
+        <option value="NC">New Caledonia</option>
+        <option value="NZ">New Zealand</option>
+        <option value="NI">Nicaragua</option>
+        <option value="NE">Niger</option>
+        <option value="NG">Nigeria</option>
+        <option value="NU">Niue</option>
+        <option value="NF">Norfolk Island</option>
+        <option value="MP">Northern Mariana Islands</option>
+        <option value="NO">Norway</option>
+        <option value="OM">Oman</option>
+        <option value="PK">Pakistan</option>
+        <option value="PW">Palau</option>
+        <option value="PS">Palestine</option>
+        <option value="PA">Panama</option>
+        <option value="PG">Papua New Guinea</option>
+        <option value="PY">Paraguay</option>
+        <option value="PE">Peru</option>
+        <option value="PH">Philippines</option>
+        <option value="PN">Pitcairn Islands</option>
+        <option value="PL">Poland</option>
+        <option value="PT">Portugal</option>
+        <option value="PR">Puerto Rico</option>
+        <option value="QA">Qatar</option>
+        <option value="RE">Reunion</option>
+        <option value="RO">Romania</option>
+        <option value="RU">Russian Federation</option>
+        <option value="RW">Rwanda</option>
+        <option value="BL">Saint Barthelemy</option>
+        <option value="SH">Saint Helena</option>
+        <option value="KN">Saint Kitts and Nevis</option>
+        <option value="LC">Saint Lucia</option>
+        <option value="MF">Saint Martin</option>
+        <option value="PM">Saint Pierre and Miquelon</option>
+        <option value="VC">Saint Vincent and the Grenadines</option>
+        <option value="WS">Samoa</option>
+        <option value="SM">San Marino</option>
+        <option value="ST">Sao Tome and Principe</option>
+        <option value="SA">Saudi Arabia</option>
+        <option value="SN">Senegal</option>
+        <option value="RS">Serbia</option>
+        <option value="CS">Serbia and Montenegro</option>
+        <option value="SC">Seychelles</option>
+        <option value="SL">Sierra Leone</option>
+        <option value="SG">Singapore</option>
+        <option value="SX">Sint Maarten</option>
+        <option value="SK">Slovakia</option>
+        <option value="SI">Slovenia</option>
+        <option value="SB">Solomon Islands</option>
+        <option value="SO">Somalia</option>
+        <option value="ZA">South Africa</option>
+        <option value="GS">South Georgia and the South Sandwich Islands</option>
+        <option value="SS">South Sudan</option>
+        <option value="ES">Spain</option>
+        <option value="LK">Sri Lanka</option>
+        <option value="SD">Sudan</option>
+        <option value="SR">Suriname</option>
+        <option value="SJ">Svalbard and Jan Mayen</option>
+        <option value="SE">Sweden</option>
+        <option value="CH">Switzerland</option>
+        <option value="SY">Syria</option>
+        <option value="TW">Taiwan</option>
+        <option value="TJ">Tajikistan</option>
+        <option value="TZ">Tanzania</option>
+        <option value="TH">Thailand</option>
+        <option value="TL">Timor-Leste</option>
+        <option value="TG">Togo</option>
+        <option value="TK">Tokelau</option>
+        <option value="TO">Tonga</option>
+        <option value="TT">Trinidad and Tobago</option>
+        <option value="TN">Tunisia</option>
+        <option value="TR">Turkey (Türkiye)</option>
+        <option value="TM">Turkmenistan</option>
+        <option value="TC">Turks and Caicos Islands</option>
+        <option value="TV">Tuvalu</option>
+        <option value="UM">U.S. Outlying Islands</option>
+        <option value="UG">Uganda</option>
+        <option value="UA">Ukraine</option>
+        <option value="AE">United Arab Emirates</option>
+        <option value="GB">United Kingdom</option>
+        <option value="US">United States</option>
+        <option value="UY">Uruguay</option>
+        <option value="UZ">Uzbekistan</option>
+        <option value="VU">Vanuatu</option>
+        <option value="VA">Vatican City Holy See</option>
+        <option value="VE">Venezuela</option>
+        <option value="VN">Vietnam</option>
+        <option value="VG">Virgin Islands, British</option>
+        <option value="VI">Virgin Islands, U.S</option>
+        <option value="WF">Wallis and Futuna</option>
+        <option value="EH">Western Sahara</option>
+        <option value="YE">Yemen</option>
+        <option value="ZM">Zambia</option>
+        <option value="ZW">Zimbabwe</option>
+            </select>
+            
+        
+
+        <input type="text" placeholder="Πόλη διαμονής" minlength="3" maxlength="30" name="city" required>
+        
+        <div class="addr-btn">
+        <input type="text" placeholder="Διεύθυνση" minlength="10" maxlength="150" name="address" required>
+        <button type="button", img="" id="toggle-map-btn" style="display: none;">
+            <img src = "pin_drop.svg" alt="show on map"/>
+        </button>
+        <div id="map-container" style="display:none; width:300px; height:250px; margin-left:10px;"></div>
+        </div>
+        
+   
+            <div id="address-feedback" style="color:red; margin-top:10px;"></div>
+
+        
+        <!-- <input type="number" placeholder="Τηλέφωνο"  pattern="(\+30\d{10})|(\d{10,14})" name="telephone" inputmode="numeric" onfocusout="checkDuplicate('telephone', this.value)" required> -->
+            <input type="text" placeholder="Τηλέφωνο"   name="telephone" inputmode="numeric" onfocusout="checkDuplicate('telephone', this.value, 'USER')" required>
+
+        <span id="USERtelephoneError" class="error-message"></span>
+        
+    <button type="submit"  class="register">Εγγραφή</button>
+    </form>
+
+
+
+<!-- BAND FORM -->
+<form id="band-form" class="mainForm" style="display:none"  onsubmit='RegisterPost("band");return false;'>
+    
+    <div id="user_reg_log_btns">
+        <button type="button"id="Register" class="reg-log" onclick="show_register_form_band()" >Sign up</button>
+        <button type="button" id="Login" class="reg-log" onclick="show_login_form_band()" >Sign in</button>
+    </div>
+    
+    <input type="text" placeholder="Username" name="username" pattern="[A-Za-z][A-Za-z0-9]{6,}" onfocusout="checkDuplicate('username', this.value, 'BAND')" required>
+    <span id="BANDusernameError" class="error-message"></span>
+    
+    <input type="text" placeholder="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onfocusout="checkDuplicate('email', this.value, 'BAND')" required>
+    <span id="BANDemailError" class="error-message"></span>
+
+   <div class="passwd-wrapper">
+    <input type="password" placeholder="Password" name="password" minlength="8" maxlength="14"
+        pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+     <button type="button" class="show-passwd" onclick="show_pass('band')">
+            <img src="eye_closed.svg" alt="show password"/>
+        </button>
+    </div>
+        
+        <input type="password" placeholder="Confirm password" name="confirm_password" minlength="8" maxlength="14"
+        pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+    
+    
+        <input type="text" placeholder="Όνομα Μπάντας" name="band_name" minlength="3" maxlength="30" required>
+    <input type="text" placeholder="Είδη μουσικής" name="music_genres" minlength="3" maxlength="200" required>
+    <input type="text" placeholder="Περιγραφή Μπάντας" name="band_description" minlength="3" maxlength="1000" required>
+    <input type="number" placeholder="Αριθμός μελών" name="members_number" min="1" max="10" required>
+    <!-- <label for="founded_year" style="color: #000000;">Χρονιά ίδρυσης Μπάντας</label>-->
+    <!-- <input type="date" id="founded_year" name="foundedYear" min="1960-01-01" required> -->
+    <input type="number" id="founded_year" placeholder="Έτος ίδρυσης Μπάντας" name="foundedYear" min="1960" max="2025" required>
+    <input type="text" placeholder="Πόλη Μπάντας" minlength="3" maxlength="30" name="band_city" required>
+    
+   <!-- <input type="number" placeholder="Τηλέφωνο"  pattern="\d{10,14}" name="telephone" inputmode="numeric" onfocusout="checkDuplicate('telephone', this.value, 'BAND')" required>-->
+            <input type="text" placeholder="Τηλέφωνο"   name="telephone" inputmode="numeric" onfocusout="checkDuplicate('telephone', this.value, 'BAND')" required>
+
+    
+    <span id="BANDtelephoneError" class="error-message"></span>
+
+    <input type="text" placeholder="Webpage Link" name="webpage">
+    <input type="text" placeholder="Photo Link" name="photo">
+
+    <button type="submit"  class="register">Εγγραφή</button>
+</form>
+        <h1 id="welcome_msg">Book 
+            Your  Favourite<br><span id="dynamic-word">Band</span></h1>
+    
+                
+        <div id="json-output-user"></div>
+
+
+        <div id="json-output-band"></div>
+
+      <!--  user login form -->
+    <form id="user-login-form"style="display:none;" class="mainForm" onsubmit='loginPost();return false;'>
+        <div id="user_reg_log_btns">
+            <button type="button" id="Register" class="reg-log" onclick="show_register_form()" >Sign up</button>
+            <button type="button" id="Login" class="reg-log" onclick="show_login_form()" >Sign in</button>
+        </div>
+        <input type="text" placeholder="Username" name="username" pattern="[A-Za-z][A-Za-z0-9]{6,}"required>
+        <input type="password" placeholder="Password" name="password" minlength="8" maxlength="14" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+
+       
+        <button type="submit"  id= "registerLogin" class="register" >Είσοδος</button>
+
+    </form>
+
+
+          <!--  BAND login form -->
+    <form id="band-login-form"style="display:none;" class="mainForm" onsubmit='loginPostBand();return false;'>
+        <div id="user_reg_log_btns">
+            <button type="button" id="Register" class="reg-log" onclick="show_register_form_band()" >Sign up</button>
+            <button type="button" id="Login" class="reg-log" onclick="show_login_form_band()" >Sign in</button>
+        </div>
+        <input type="text" placeholder="Username" name="username" pattern="[A-Za-z][A-Za-z0-9]{6,}"required>
+        <input type="password" placeholder="Password" name="password" minlength="8" maxlength="14" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+
+       
+        <button type="submit"  id= "registerLogin" class="register" >Είσοδος</button>
+
+    </form>
+
+     <!--  new page when user log in, shows info, logout button -->
+        <div id="user-profile" style="display: none;" >
+            <div id="navbar-container"></div>
+            <script>
+            fetch("mainNavbarLoggedIn.html")
+                .then(res => res.text())
+                .then(html => {
+                document.getElementById("navbar-container").innerHTML = html;
+                });
+            </script>
+
+            <nav class="loginNavbar">
+                <button type="button" onclick="showSection('home-section')">
+                                Home
+
+                </button>
+                
+                <button type="button" onclick="showSection('profile-section')">  
+                Profile               
+                </button>
+
+                <button type="button" onclick="showSection('booking-section')">  
+                Book Now               
+                </button>
+
+                <a href="view_bands.html" > Book now</a>
+                
+                <button type="button" id="logout" onclick="logout()">
+                    <img src="logout.svg" alt="Log out" style="width:30px; height:30px;"/>
+                </button>
+            </nav>
+           
+
+            <!-- first page, home -->
+            <div id="home-section">
+            <h2 id="wlcm-msg">Welcome back <span id="profile-username">!</span> </h2>
+            </div>
+
+            <!-- second page, profile -->
+            <div id="profile-section" style="display:none;">
+            
+            </div>
+            <!-- third page, booking -->
+            <div id="booking-section" style="display:none;">
+                <h2> Book your band.</h2>
+            </div>
+            <!-- logout -->
+
+        </div>
+
+        <!-- band logged in page -->
+        <div id="band-profile" style="display: none;" >
+
+            <nav class="loginNavbar">
+                <button type="button" onclick="showSectionBand('home-section-band')">
+                                Home
+
+                </button>
+                
+                <button type="button" onclick="showSectionBand('profile-section-band')">  
+                Profile               
+                </button>
+                
+                  <button type="button" onclick="showSectionBand('externalPublicEvent-id-section-band')">  
+                Public Events   
+
+                </button>
+
+                  <button type="button" onclick="showSectionBand('privateEvent-section-band')">  
+                Private Events               
+                </button>
+
+                <button type="button" id="logout" onclick="logout()">
+                    <img src="logout.svg" alt="Log out" style="width:30px; height:30px;"/>
+                </button>
+            </nav>
+           
+
+            <!-- first page, home -->
+            <div id="home-section-band">
+                <div id="welcome-container">
+                    <div id="welcome-content">
+                        <h1>Welcome Back.<span id="profile-username"></span></h1>
+                        <p>
+                        Manage events,<br> respond to requests, <br>  and engage with your clients.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="band-home-buttons">
+                    <button class="home-btn" onclick="showSectionBand('externalPublicEvent-id-section-band')">My Public Events</button>
+                    <button class="home-btn"  onclick="showSectionBand('privateEvent-section-band')">My Private Events</button>
+                </div>
+            </div>
+
+            <!-- second page, profile -->
+            <div id="profile-section-band" style="display:none;">
+                
+            </div>
+            <div id="externalPublicEvent-id-section-band" style="display:none;">
+               
+                <div id="publicEvent-section-band">
+                </div>
+            </div>
+
+            <div id="privateEvent-section-band" style="display:none;">
+            
+            </div>
+
+            
+                    
+
+        </div>
+         <div id="chat-page" style="display:none">
+                <button class="back-btn" onclick="backToBookings()">←back</button>
+                <h2 id="chat-title"></h2>
+                <div id="chat-messages"></div>
+
+                <form id="chat-form">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chat-input" placeholder="Type message..." />
+                        
+                    </div>
+                </form>
+            </div>
+
+
+        
+
+
+
+     
+
+    <script>
+        function switchtext() {
+            const btn = document.getElementById("select_user_or_band");
+            const textSpan = btn.querySelector(".btn-text");
+
+            const userForm = document.getElementById("user-form");
+            const bandForm = document.getElementById("band-form");
+            const word = document.getElementById("dynamic-word");
+            const userLoginForm = document.getElementById("user-login-form");
+            const bandLoginForm = document.getElementById("band-login-form");
+
+
+            
+            word.classList.add('fade-out');
+
+            setTimeout(() => {
+                if(btn.textContent.trim() === "USER") {
+                    textSpan.textContent = "BAND";
+                    userForm.style.display = "none";
+                    bandForm.style.display = "block";
+                    userLoginForm.style.display = "none";
+                    //bandLoginForm.style.display = "block";
+                    word.textContent = "Event";
+                    word.classList.add('fade-out');
+                    document.body.classList.remove("user-mode");
+
+                    document.body.classList.add("band-mode"); //change bg color
+
+                    document.getElementById("json-output-band").innerText = localStorage.getItem("bandFormJSON") || '';
+            document.getElementById("json-output-user").innerText = '';
+
+                } else {
+                    textSpan.textContent = "USER";
+                    userForm.style.display = "block";
+                    bandForm.style.display = "none";
+                    bandLoginForm.style.display = "none";
+
+                    word.textContent = "Band";
+                    document.body.classList.remove("band-mode"); //change bg color
+                    document.body.classList.add("user-mode");
+
+                    document.getElementById("json-output-user").innerText = localStorage.getItem("userFormJSON") || '';
+            document.getElementById("json-output-band").innerText = '';
+                }
+
+                // fade in
+                word.classList.remove('fade-out');
+                word.classList.add('fade-in');
+
+                setTimeout(() => {
+                    word.classList.remove('fade-in');
+                }, 500);
+            }, 500);
+        }
+    </script>
+   
+
+   <!-- ADD PUBLIC EVENT MODAL -->
+<div id="addEventModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeAddEventModal()">&times;</span>
+
+    <h3>Add Public Event</h3>
+
+    <form id="addEventForm" onsubmit="submitPublicEvent(event); return false;">
+
+  <input type="text"
+         name="event_type"
+         placeholder="Event type (concert)"
+         required>
+
+  <input type="datetime-local"
+         name="event_datetime"
+         required>
+
+  <textarea name="event_description"
+            placeholder="Description"
+            required></textarea>
+
+  <input type="number"
+         name="participants_price"
+         placeholder="Price per participant (€)"
+         min="0"
+         required>
+
+  <input type="text"
+         name="event_city"
+         placeholder="City"
+         required>
+
+  <input type="text"
+         name="event_address"
+         placeholder="Event address"
+         required>
+
+  
+
+
+  <button type="submit">Add Event</button>
+</form>
+
+  </div>
+</div>
+
+   <!-- Edit PUBLIC EVENT MODAL -->
+<div id="editEventModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeEditEventModal()">&times;</span>
+
+    <h3>Edit Public Event</h3>
+
+    <form id="editEventForm" onsubmit="editPublicEvent(event); return false;">
+
+  <input type="text"
+         name="event_type"
+         value="LIOVE MUSIC"
+         placeholder="Event type (concert)"
+         required>
+
+  <input type="datetime-local"
+         name="event_datetime"
+         required>
+
+  <textarea name="event_description"
+            placeholder="Description"
+            required></textarea>
+
+  <input type="number"
+         name="participants_price"
+         placeholder="Price per participant (€)"
+         min="0"
+         required>
+
+  <input type="text"
+         name="event_city"
+         placeholder="City"
+         required>
+
+  <input type="text"
+         name="event_address"
+         placeholder="Event address"
+         required>
+
+  
+
+
+  <button type="submit">Edit Event</button>
+</form>
+
+  </div>
+</div>
+
+<div id="acceptModal" class="modal" style="display:none;">
+  <div class="modal-content">
+        <span class="close-btn" onclick="closeAcceptPrivateEventModal()">&times;</span>
+
+    <h3 id="title"></h3>
+   
+    <form id="editEventForm" onsubmit="MsgForPrivateEvent(event); return false;">
+
+        <textarea id="bandDecisionInput"
+        placeholder="Write your decision / message to the user"
+        
+        ></textarea>
+
+        <div style="margin-top:15px;">
+        
+        <div id="accpt_rjct_btns">
+            <button type="button" id="reject_btn" class="reject-btn" >
+            Reject
+            </button>
+
+            <button type="button" id="accept_btn" class="accept-btn" >
+            Accept
+            </button>
+        </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+
+</body>
+</html>

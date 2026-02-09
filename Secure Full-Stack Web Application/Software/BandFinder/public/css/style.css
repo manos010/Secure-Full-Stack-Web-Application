@@ -1,0 +1,891 @@
+body {
+    margin: 0;
+    height: 100vh;
+    /*background: linear-gradient(to right, #061161, #780206);*/
+    background: linear-gradient(90deg,rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 1) 50%);
+
+    
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/*
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    min-height: 100vh;
+}
+
+
+
+
+.login-image-side img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.login-image-side {
+    background: black;   
+    height: 100%;       
+    width: 100%;        
+    margin: -100px, -100px;
+    padding: 0;
+}
+*/
+body.band-mode {
+        background: linear-gradient(90deg,rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 1) 50%);
+
+/*    background: linear-gradient(270deg,rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 1) 50%);*/
+}
+
+.mainForm{
+    margin-top: 80px;
+    margin-left: 80px;
+    
+   
+}
+
+.mainForm input[type="text"],
+.mainForm input[type="password"],
+.mainForm input[type="number"],
+.mainForm input[type="date"]{
+   
+    margin-top: 10px;
+    border-radius: 10px;
+    display: block;
+    background-color:  rgba(255, 255, 255, 0.979);
+    border: 1.7px solid rgba(0, 0, 0, 0.172);
+    width: 250px;
+    height: 35px;
+    padding-left: 15px;
+    color:rgb(0, 0, 0); 
+    font-size: 14px;
+    
+    
+
+}
+
+
+
+
+
+.gender-options {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+
+.gender-options label {
+    color: rgb(0, 0, 0) !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#founded-year-label{
+    color:rgb(0, 0, 0);
+    display: flex;
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+#country {
+    display: block;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.172);
+    color: #000000;
+    border-radius: 10px;
+    padding: 8px 12px;
+    width: 268px;
+    height: 40px;
+    appearance: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;  
+    font-size: 14px;
+}
+
+#country option {
+  background-color: #222;
+  font-size: 16px;
+
+                
+}
+
+input::placeholder {
+    color: rgb(0, 0, 0);
+}
+
+#select_user_or_band {
+    width: 70px;
+    height: 70px;
+    background:transparent;
+    border: 2px solid #000000; 
+    color: #000000;
+    border-radius: 50px; 
+    margin-left: 170px;
+    margin-top: 100px;
+    cursor: pointer;
+    background-color: #fbfbfb;
+}
+
+#select_user_or_band .btn-text {
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+  transform-origin: center;
+  
+}
+
+#select_user_or_band:hover .btn-text {
+  transform: scale(1.2);
+  color:rgb(0, 0, 0); 
+}
+
+#select_user_or_band:hover{
+        background-color:  rgb(255, 255, 255);
+}
+#welcome_msg {
+    position: absolute;
+    top: 50%;               
+    left: 75%;              
+    transform: translate(-50%, -50%);  
+    text-align: center;      
+    color: white;
+    font-size: 2.5vw;
+    line-height: 1.2;
+}
+
+#welcome_msg #dynamic-word {
+    display: block;          
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+@media (max-width: 1024px) {
+    #welcome_msg {
+        font-size: 3vw;   
+        right: 10vw;        
+        top: 30vh;          
+    }
+
+    .mainForm input[type="text"],
+    .mainForm input[type="password"],
+    .mainForm input[type="number"],
+    .mainForm input[type="date"]{
+    
+        width: 230px;
+        height: 35px;
+     
+    
+    }
+
+
+    #country{
+        width: 248px;   
+    }
+
+
+}
+
+
+@media (max-width: 480px) {
+   
+        .mainForm input[type="text"],
+        .mainForm input[type="password"],
+        .mainForm input[type="number"],
+        .mainForm input[type="date"]{
+    
+        width: 210px;
+        height: 35px;
+        }
+}
+
+@media (max-width: 320px) {
+    
+.mainForm input[type="text"],
+    .mainForm input[type="password"],
+    .mainForm input[type="number"],
+    .mainForm input[type="date"]{
+    
+        width: 200px;
+        height: 35px;
+    
+}
+    
+}
+
+
+
+#dynamic-word {
+    display: inline-block;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateY(-20px); /*transition movement*/
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(8px); /*transition movement*/
+}
+
+.register{
+    margin-top: 20px;
+    background:transparent;
+    border: 2px solid #000000; 
+    background-color: black;
+    color: #ffffff; 
+    margin-left: 68px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+
+.register:hover{
+         background-color: #2a2a2a;        
+    transform: translateY(-2px);   
+
+}
+
+
+.passwd-wrapper {
+	position: relative;
+    display: flex;
+    align-items: center;
+    
+}
+
+.show-passwd {
+	position: absolute;
+	top: 50%;
+	left: 223px;
+    top: 18px;
+	cursor: pointer;
+	width: 20px;
+	display: flex;
+	align-items: center;
+    background: none;   
+    border: none;       
+    padding: 0;         
+    outline: none; 
+}
+
+.show-passwd img{
+    width: 30px;
+}
+
+
+.addr-btn{
+    align-items: center;
+    display:flex;
+    /*gap: 1px;-*/
+    
+}
+
+#toggle-map-btn{
+    width: 50px;
+    height: 20px;
+     background: none;   
+     border: none;       
+    padding: 0;         
+    outline: none;
+    cursor: pointer;
+    
+}
+
+#map-container {
+    position: absolute;   
+    /*width: 500px;
+    height: 550px;*/
+    /*top: 1px;*/          
+    left: 400px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    background-color: #eee;
+    z-index: 1000;
+}
+
+
+#user_reg_log_btns {
+    align-items: center;
+    display: flex;
+    gap: 40px; 
+    margin-left: 20px;
+    position:relative;
+    margin-bottom: 30px;
+
+
+
+}
+
+.reg-log{
+    background:transparent;
+    border: 2px solid #bababa; 
+    background-color: #d9d9d9;
+    color: #000000; 
+    
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+#user-login-form {
+    display: none;
+}
+#user-login-form input {
+    margin-top: 20px;
+}
+
+
+
+/*
+#user-login-form button.registerLogin {
+    margin-top: 420px; 
+}*/
+
+/*#user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    justify-content: center; 
+    text-align: center;  
+    height: 100vh;        
+}*/
+
+.loginNavbar {
+    width: 100%;
+    height: 60px;
+        max-width: 100vw;       
+
+    background:none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 20px;
+    /*position: relative;*/
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+}
+.loginNavbar button {
+    background: none;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 15px;
+}
+
+
+.loginNavbar a {
+    color: rgb(0, 0, 0);         
+    font-size: 18px;        
+    text-decoration: none;  
+    
+}
+.loginNavbar a:last-child {
+    margin-right: 50px; 
+}
+
+#home-section{
+     text-align: center;       
+  
+  color: rgb(0, 0, 0);             
+  padding: 50px;  
+  margin-top: 200px;
+  
+
+}
+
+#wlcm-msg{
+    font-size: 50px;
+}
+
+#logout{
+    margin-right: 50px;
+}
+
+
+
+#profile-form {
+     margin-top: 80px;
+    margin-left: 80px;
+   
+
+}
+/*
+#profile-form input {
+    
+    margin: 250px 15px 50px 15px;
+}*/
+
+#profile-form input[type="text"],
+#profile-form input[type="password"],
+#profile-form input[type="number"],
+#profile-form input[type="date"]{
+    margin-top: 10px;
+    border-radius: 50px;
+    display: block;
+    background-color:  rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 250px;
+    height: 35px;
+    padding-left: 15px;
+    color:white; 
+    font-size: 14px;
+}
+
+
+
+
+
+#profile-field title{
+    margin-left: 150px;
+}
+
+h4 {
+    margin: 5px 0 2px 15px; /* top, right, btm, left */
+    /*font-size: 14px;      
+ */
+}
+
+
+#add_more {
+    margin-top: 20px; 
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;        
+  border: none;              
+  background: transparent;   
+  padding: 0;
+  cursor: pointer;
+
+
+}
+
+#add_more img {
+  width: 20px;
+  height: 20px;
+}
+
+/* optional hover effect */
+#add_more:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#publicEvent-section-band{
+    margin-left: 20px;
+}
+
+.modal {
+  display: none;              
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #111;
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+  color: white;
+  position: relative;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color:  rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 375px;
+    height: 35px;
+    padding-left: 15px;
+    color:white; 
+    font-size: 14px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#accpt_rjct_btns{
+    display: flex;;
+}
+
+
+.user-icon {
+    filter: invert(1);
+}
+
+#band-profile {
+    /*background: linear-gradient(to right, #061161, #780206);*/
+        background: white;
+    min-height: 100vh;
+}
+
+#chat-page{
+    background: white;
+    min-height: 100vh;
+}
+
+/* Container for events (public or private) */
+.events-group {
+    margin-bottom: 35px;
+    margin-left: 20px;
+}
+
+/* Section headers */
+.events-group h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+/* Cards for events */
+.event-card {
+    background: white;
+    border: 1.5px solid black;
+    border-radius: 12px;
+    padding: 15px 20px;
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(0,0,0,0.08);
+}
+
+.event-card span {
+    color: black;
+    font-size: 14.5px;
+}
+
+.event-card b {
+    font-weight: 600;
+}
+
+/* Buttons container inside cards */
+.event-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Buttons inside cards */
+.event-card-actions button {
+    background: white;
+    border: 1px solid black;
+    color: black;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.event-card-actions button:hover {
+    background: black;
+    color: white;
+}
+
+#chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #ffffff;
+}
+
+.chat-message {
+    max-width: 70%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: inline-block;
+    word-wrap: break-word;
+    position: relative;
+    font-size: 14.5px;
+    color: #000;
+}
+
+
+.chat-message.user {
+    background-color: #f4f4f4;
+    color:#000 ;
+    align-self: flex-start;
+}
+
+.chat-message.band {
+    background-color: #000000; 
+    color:white;
+    align-self: flex-end;
+}
+
+
+.chat-message .message-time {
+    font-size: 11px;
+    color: #7e7e7e;
+    margin-top: 4px;
+    text-align: right;
+}
+
+
+.chat-message .message-text {
+    margin-bottom: 2px;
+    
+}
+
+#chat-input {
+    position: fixed;       
+    bottom: 200px;  
+    left: 50%;             
+    transform: translateX(-50%);
+    width: 100%;          
+    max-width: 400px;     
+    margin: 0 auto;       
+    display: block;      
+    padding: 10px 15px;   
+    height: 40px;         
+    font-size: 16px;     
+    border-radius: 20px; 
+    border: 1.5px solid #000; 
+    box-sizing: border-box;   
+    color: #000;          
+    background-color: #fff; 
+}
+
+#chat-input:focus {
+    outline: none;
+    border-color: #555; 
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.profile-form {
+    max-width: 480px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-form label {
+    font-weight: 600;
+    color: #000;
+}
+
+.profile-form input,
+.profile-form textarea {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #000;
+    font-size: 14px;
+}
+
+.profile-form textarea {
+    resize: vertical;
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 2px solid #000;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+#band-profile-form h2{
+    color:black;
+}
+
+
+#welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh; 
+    width: 100%;
+    background-color: #ffffff; 
+    color: #000000; 
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#welcome-content h1 {
+    font-size: 2.5vw; 
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+#welcome-content p {
+    font-size: 1.5vw; 
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+#addEventModal input::placeholder,
+#addEventModal textarea::placeholder {
+    color: white;
+    opacity: 1;
+}
+
+.error-message,
+#error-message {
+    color: black;
+   
+}
+
+@media (max-width: 1024px) {
+    #welcome-content h1 {
+        font-size: 6vw;
+    }
+    #welcome-content p {
+        font-size: 3vw;
+    }
+}
+
+
+@media (max-width: 480px) {
+    #welcome-content h1 {
+        font-size: 8vw;
+    }
+    #welcome-content p {
+        font-size: 4vw;
+    }
+}
+
+#band-home-buttons {
+    margin-top: -200px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.home-btn {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+ 
+.home-btn:hover {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 480px) {
+    .home-btn {
+        width: 80%;
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .show-passwd {
+        left:  180px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  body {
+    background: white !important;
+  }
+  #welcome_msg {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 480px) {
+    .events-group {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .event-card {
+        margin-left: 0;
+        margin-right: 0;
+        width: 85%; 
+        padding: 10px 15px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 80%;      
+        padding: 15px;    
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+        width: 93%;      
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .modal-content button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}

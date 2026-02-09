@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+                      
+  <title>Admin Panel page</title>
+  <link rel="stylesheet" href="css/testAdmin.css">
+
+
+    <script src="js/admin.js" defer></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+</head>
+
+
+<body>
+
+<div id="AdminLoginPage">
+        <h2 id="LoginMsg">Login</h2>
+
+        <form id="AdminLoginForm"  onsubmit='adminLogin();return false;'>
+                <input type="text" placeholder="Username" name="username"  required>
+                <input type="password" placeholder="Password" name="password" minlength="8" maxlength="14"
+                    pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*" required>
+
+                <button type="submit"id="loginBtn" >Login</button>
+        </form>
+</div>
+
+<div id="adminContainer"  style="display: none;">
+      <nav id="adminNavbar">
+            <div class="left-nav">
+                <h3>Dashboard</h3>
+            </div>
+            <div class="right-nav">
+                <span id="adminProfile">Admin</span>
+                <button id="logoutBtn" onclick="adminLogout()">Logout</button>
+            </div>
+
+            
+        </nav>
+    
+    <div id="mainContent">
+        <aside id="sidebar">
+            
+            <ul id="dashBtns">
+                <li><button onclick="showsection('usersPage')">Users</button></li>
+                <li><button onclick="showsection('reviewsPage')">Reviews</button></li>
+                <li><button onclick="showsection('statisticsPage')">Statistics</button></li>
+            </ul>
+        </aside>
+
+        
+      
+            
+            <div id="usersPage"><h2>Users Page</h2> </div>
+            <div id="reviewsPage" style="display:none;"><h2>reviews Page</h2> </div>
+            <div id="statisticsPage" style="display:none;">
+    <h2>Statistics Page</h2>
+    <div id="stats">
+        <div id="stats1">
+            <div id="piechart_bands_by_city" style="width: 600px; height: 400px;"></div>
+            <div id="piechart_public_private" style="width: 600px; height: 400px;"></div>
+        </div>
+        <div id="stats2">
+            <div id="piechart_users_bands" style="width: 600px; height: 400px;"></div>
+            <div id="piechart_revenue" style="width: 600px; height: 400px;"></div>
+        </div>
+    
+    </div>
+    </div>
+
+    </div>
+   
+    
+
+   
+</div>   
+
+</body>

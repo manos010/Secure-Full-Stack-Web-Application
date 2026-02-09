@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bands</title>
+    <link rel="stylesheet" href="css/view_bands.css">
+    <script src="js/navbar.js"></script>
+    <script src="js/view_bands.js" defer></script>
+
+    
+                   
+
+
+</head>
+
+
+<body>
+  <div id="navbar-container"></div>
+
+
+<div class="filter-wrapper">
+  <div id="filter-box">
+
+      <form id="filterForm" onsubmit="searchBands(event)">
+     
+        <select id="genreSelect" name="genre">
+          <option value="">Genre</option>
+        </select>
+
+        <input type="number" id="founded_year" placeholder="Έτος ίδρυσης" name="foundedYear" min="1960" max="2025" >
+
+        <select id="citySelect" name="city">
+          <option value="">City</option>
+        </select>
+
+        <button type="submit" id="searchBtn">Go</button>
+      </form>
+  </div>
+</div>
+  
+  <div id="bandsResults"></div>
+  
+<div id="bandProfile" class="profile-card" style="display:none;">
+  <button class="back-btn" onclick="goBack()">← Back</button>
+
+  <h2 id="profileName" class="profile-title"></h2>
+  <p id="profileRating"></p>
+  
+  <div class="profile-info">
+    <p id="profileUsername"></p>
+    <p id="profileEmail"></p>
+    <p id="profileGenre"></p>
+    <p id="profileMembers"></p>
+    <p id="profileYear"></p>
+    <p id="profileCity"></p>
+    <p id="profilePhone"></p>
+    <p id="profileWebpage"></p>
+  </div>
+
+  <div class="profile-description">
+    <h3>Description</h3>
+    <p id="profileDescription"></p>
+  </div>
+  <button id="bookBand" style="display:none">Book Now</button>
+</div>
+
+
+
+<div id="calendar-container" style="display:none">
+  <div class="calendar-header">
+    <button id="prevMonth">‹</button>
+    <span id="calendarTitle"></span>
+    <button id="nextMonth">›</button>
+  </div>
+
+  <div class="calendar-grid" id="calendarGrid"></div>
+</div>
+
+<div id = "events-container" style="display:none">
+  <div id="upcomingEvents"></div>
+  <div id="pastEvents"></div>
+</div>
+<div id="reviewsContainer"  style="display:none;">
+  
+  <div id="reviewsHeader">
+  <h2>Reviews</h2>
+  <button id="writeReviewBtn" style="display:none;" onclick="openReviewModal()">Write a review</button>
+</div>
+  <div id="reviewsList"></div>
+</div>
+
+
+<div id="reviewModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeReviewModal()">&times;</span>
+
+    <h3>Write a Review</h3>
+
+    <form id="reviewForm" onsubmit="postReview(event)">
+      <input type="hidden" id="band_name_modal" name="band_name" value="">
+
+      <input type="hidden" id="reviewSender" placeholder="Your name" value="" >
+
+      <textarea id="reviewText" placeholder="Write your review..." required></textarea>
+
+      <input type="number" id="reviewRating" min="1" max="5" placeholder="Rating (1-5)" required>
+
+      <button type="submit">Submit Review</button>
+    </form>
+
+
+  </div>
+</div>
+
+
+<div id="bookingModal" class="modal">
+  <div class="modal-content">
+
+    <span class="close-btn" onclick="closeBookingModal()">&times;</span>
+
+    <h2>Book Private Event</h2>
+
+    <div id="availabilityBox">
+      <h4>Band Availability</h4>
+      <div id="availabilityDates">Loading...</div>
+    </div>
+
+    <form id="privateEventForm" onsubmit="submitPrivateEvent(event)">
+      
+      <input type="hidden" id="bookingBandId">
+      <input type="hidden" id="bookingPrice">
+      <input type="hidden" id="bookingUserId">
+      <input type="hidden" id="eventLat" name="event_lat" value="35.5168076">
+      <input type="hidden" id="eventLon" name="event_lon" value="24.0152191">
+
+
+
+
+      <select id="eventType" required>
+        <option value="">Event Type</option>
+        <option value="Wedding">Wedding - 1000 Euros</option>
+        <option value="Baptism">Baptism - 700 Euros</option>
+        <option value="Party">Party - 500 Euros</option>
+      </select>
+
+      <input type="date" id="eventDate" required>
+      <input type="text" id="eventCity" placeholder="City" required>
+      <textarea id="eventDescription" placeholder="Description"></textarea>
+      <input type="text" id="eventAddress" name="event_address" placeholder="Address">
+
+
+      <button type="submit">Request Event</button>
+    </form>
+
+  </div>
+</div>
+</body>
+
